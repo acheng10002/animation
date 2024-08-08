@@ -1,0 +1,437 @@
+/* rotates an element on a 2D plane 
+.element {
+    transform: rotate();
+}
+*/
+.rotate-by-deg {
+    transform: rotate(45deg);
+}
+  
+.rotate-by-rad {
+    transform: rotate(-1rad);
+}
+  
+.rotate-by-turn {
+    transform: rotate(0.3turn);
+}
+  
+body {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+  
+p {
+    margin-bottom: 16px;
+}
+  
+img {
+    width: 60px;
+}
+  
+div,
+* + p {
+    margin-top: 1.5rem;
+}
+
+/* scales an element on a 2D plane
+.element {
+    transform: scaleX();
+    transform: scaleY();
+    tansform: scale();
+*/
+.scaleX {
+    transform: scaleX(0.25);
+}
+  
+.scaleY {
+    transform: scaleY(1.5);
+}
+  
+.scaleXY {
+    transform: scale(0.25, 1.5);
+}
+  
+.scale {
+    transform: scale(0.5);
+}
+ 
+.forScale {
+    margin: 24px 0px 16px;
+}
+
+/* skews an element on a 2D plane 
+.element {
+  transform: skewX();
+  transform: skewY();
+  transform: skew();
+}
+*/
+.skewX {
+    transform: skewX(45deg);
+}
+  
+.skewY {
+    transform: skewY(-0.5rad);
+}
+  
+.skewXY {
+    /* skew(X, Y) */
+    transform: skew(45deg, -0.5rad);
+}
+  
+.skew {
+    /* single value behaves the same as skewX */
+    transform: skew(45deg);
+}
+  
+p {
+    margin: 0;
+}
+  
+.skewDiv {
+    background: #cc9543;
+    width: 50px;
+    height: 50px;
+}
+  
+.skewDiv,
+* + p {
+    margin-top: 1.5rem;
+}
+
+/* translates an element on a 2D plane
+.element {
+  transform: translateX();
+  transform: translateY();
+  transform: translate();
+}
+*/
+
+.translateX {
+    transform: translateX(20px);
+}
+  
+.translateY {
+    /* percent values are of the element's width */
+    transform: translateY(-33%);
+}
+  
+.translateXY {
+    transform: translate(20px, -33%);
+}
+  
+.translate {
+    border: 1px solid black;
+    margin-right: auto;
+    padding: 24px;
+}
+  
+.forTranslate {
+    margin: 12px 0 24px;
+}
+  
+img {
+    width: 60px;
+}
+
+.red-box,
+.blue-box {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+}
+  
+.red-box {
+    background: red;
+    /* chaining multiple transforms involves adding more
+    transform functions with a space bt each one 
+    
+    red box is translated then rotated*/
+    transform: rotate(45deg) translate(200%);
+}
+  
+.blue-box {
+    background: blue;
+    /* composite transforms are effectively applied
+    in order from right to left 
+    
+    blue box is rotated then translated */
+    transform: translate(200%) rotate(45deg);
+}
+  
+/* multiple transforms can be chained for various
+results, but perspective is an exception */
+
+/* rotate, scale, and translate work for 3D planes 
+too */
+.element {
+    /* sets the distance from the user 
+    to the z = 0 plane 
+    perspective valye tells the object to render
+    as if I was viewing it from a specific distance
+    on the z-axis 
+    perspective must be declared first, leftmost */
+    transform: perspective();
+}
+
+/* rotate an element in a 3D space
+.element {
+  transform: rotateX();
+  transform: rotateY();
+  transform: rotateZ();
+  transform: rotate3d();
+}
+*/
+
+.rotateX {
+    transform: rotateX(60deg);
+}
+  
+.rotateY {
+    transform: rotateY(60deg);
+}
+  
+.rotateZ {
+    transform: rotateZ(60deg);
+}
+
+/* scale an element in 3D space
+.element {
+  transform: scaleZ();
+  transform: scale3d();
+}
+*/
+
+/* translate an element in 3D space
+.element {
+  // perspective works with translate Z to create
+  // illusion of 3D distance from the rendered object 
+  transform: translateZ();
+  transform: translate3d();
+}
+*/
+
+.translate30 {
+    transform: perspective(100px) translateZ(30px);
+}
+  
+.translate-100 {
+    transform: perspective(100px) translateZ(-100px);
+}
+  
+.translate-200 {
+    transform: perspective(100px) translateZ(-200px);
+}
+
+.forTranslateZ {
+    margin-bottom: 16px;
+}
+
+/* 
+.element {
+  // matrix combines all transform functions into one
+  // but should not be used
+  transform: matrix();
+  transform: matrix3d();
+}
+*/
+/* The parent container, with perspective */
+.container {
+    width: 400px;
+    height: 400px;
+    border: 2px solid white;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 800px;
+    perspective-origin: top right;
+}
+  
+/* The child element, with 3D tranforms preserved */
+.cube {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    transform-style: preserve-3d;
+}
+  
+/* The sides of the cube, absolutely positioned */
+.side {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.9;
+    border: 2px solid white;
+}
+  
+/* Background colors for the cube's sides to help visualize the work */
+.front { 
+    background-color: #d50000; 
+    transform: translateZ(100px); 
+}
+.back { 
+    background-color: #aa00ff; 
+    transform: translateZ(-100px);
+}
+  
+.left { 
+    background-color: #304ffe; 
+    transform: rotateY(90deg) translateZ(100px);
+}
+.right { 
+    background-color: #0091ea; 
+    transform: rotateY(-90deg) translateZ(100px);
+}
+  
+.top { 
+    background-color: #00bfa5; 
+    transform: rotateX(90deg) translateZ(100px);
+}
+.bottom { 
+    background-color: #64dd17; 
+    transform: rotateX(-90deg) translateZ(100px);
+}
+
+#transition-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+  
+.forTransition {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 2% 5% 2% 5%;
+    background-color: white;
+    color: white;
+    transition: background-color 1s ease-out 0.25s;
+    /* other CSS properties
+       transition is shorthand for the following: 
+        transition-property: background-color; (what CSS 
+            property will be transitioned)
+        transition-duration: 1s; (duration that the 
+            transition will occur over) 
+        transition-timing-function: ease-out; (changes the
+            speed of the transition over the course of its
+            duration- either linearly or quick at the start
+            and slow at the end)
+        transition-delay: 0.25s; (delay at which the transition
+            will start)
+    div {
+        transition: <property> <duration> <timing-function> <delay>;
+    }
+    */
+}
+  
+.forTransition:hover {
+    background-color: black;
+    cursor: pointer;
+}
+
+#delay {
+    font-size: 14px;
+    transition-property: font-size;
+    transition-duration: 4s;
+    transition-delay: 2s;
+}
+  
+#delay:hover {
+    font-size: 36px;
+}
+
+.box {
+    border-style: solid;
+    border-width: 1px;
+    display: block;
+    width: 100px;
+    height: 100px;
+    background-color: #0000ff;
+    transition:
+      width 2s,
+      height 2s,
+      background-color 2s,
+      rotate 2s;
+}
+  
+.box:hover {
+    background-color: #ffcccc;
+    width: 200px;
+    height: 200px;
+    rotate: 180deg;
+}
+
+nav {
+    display: flex;
+    gap: 0.5rem;
+}
+  
+a {
+    flex: 1;
+    background-color: #333;
+    color: #fff;
+    border: 1px solid;
+    padding: 0.5rem;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.5s ease-out;
+}
+  
+a:hover,
+a:focus {
+    background-color: #fff;
+    color: #333;
+}
+
+.noneToBlock {
+    font-size: 1.6rem;
+    padding: 20px;
+    border: 3px solid red;
+    border-radius: 20px;
+    width: 480px;
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s, visibility 1s;
+}
+  
+.showing {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+}
+
+.ball {
+    border-radius: 25px;
+    width: 50px;
+    height: 50px;
+    background: #c00;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: transform 1s;
+}
+
+.square {
+    position: relative;
+}
+
+.first.square {
+    z-index: 2;
+    background-color: peachpuff;
+}
+  
+.second.square {
+    z-index: 1;
+    margin-top: -20px;
+    margin-left: 20px;
+}
+
+
+
+  
